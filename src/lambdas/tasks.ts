@@ -31,7 +31,7 @@ export const createTask = async (event: any) => {
     const { body } = event
     const { title, category, description, important } = JSON.parse(body)
 
-    if (!title || !category || !description || !important) {
+    if (!title || !category || !description) {
       console.log('Invalid request')
       return response(400)
     }
