@@ -24,10 +24,9 @@ export const login = async (event: any) => {
     const { Items } = await db
       .scan({
         TableName: userTable,
-        FilterExpression: 'username = :username and password = :password',
+        FilterExpression: 'username = :username',
         ExpressionAttributeValues: {
-          ':username': username,
-          ':password': password
+          ':username': username
         },
         Limit: 1
       })

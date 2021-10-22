@@ -3,6 +3,9 @@
 # Serverless AWS template
 .serverless
 
+/dist
+/.build
+
 # dependencies
 /node_modules
 /client/node_modules

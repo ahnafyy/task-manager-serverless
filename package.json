@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Management system for IT support tasks",
   "scripts": {
-    "build": "npx webpack",
+    "build": "tsc",
     "client": "npm start --prefix client",
     "client-install": "npm install --prefix client",
     "test": "echo \"Error: no test specified\" && exit 1",
