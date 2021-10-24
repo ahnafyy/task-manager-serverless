@@ -43,13 +43,8 @@ functions:
             origin: '*'
             headers:
               - Content-Type
-              - X-Amz-Date
               - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
               - Access-Control-Allow-Origin
-              - Access-Control-Allow-Credentials
   getUsers:
     handler: dist/lambdas/users.getUsers
     events:
@@ -60,13 +55,8 @@ functions:
             origin: '*'
             headers:
               - Content-Type
-              - X-Amz-Date
               - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
               - Access-Control-Allow-Origin
-              - Access-Control-Allow-Credentials
           authorizer: auth
   createUser:
     handler: dist/lambdas/users.createUser
@@ -78,13 +68,8 @@ functions:
             origin: '*'
             headers:
               - Content-Type
-              - X-Amz-Date
               - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
               - Access-Control-Allow-Origin
-              - Access-Control-Allow-Credentials
   deleteUser:
     handler: dist/lambdas/users.deleteUser
     events:
@@ -95,13 +80,8 @@ functions:
             origin: '*'
             headers:
               - Content-Type
-              - X-Amz-Date
               - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
               - Access-Control-Allow-Origin
-              - Access-Control-Allow-Credentials
           authorizer: auth
   getTasks:
     handler: dist/lambdas/tasks.getTasks
@@ -113,13 +93,8 @@ functions:
             origin: '*'
             headers:
               - Content-Type
-              - X-Amz-Date
               - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
               - Access-Control-Allow-Origin
-              - Access-Control-Allow-Credentials
           authorizer: auth
   createTask:
     handler: dist/lambdas/tasks.createTask
@@ -131,13 +106,8 @@ functions:
             origin: '*'
             headers:
               - Content-Type
-              - X-Amz-Date
               - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
               - Access-Control-Allow-Origin
-              - Access-Control-Allow-Credentials
           authorizer: auth
   deleteTask:
     handler: dist/lambdas/tasks.deleteTask
@@ -149,11 +119,6 @@ functions:
             origin: '*'
             headers:
               - Content-Type
-              - X-Amz-Date
               - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
               - Access-Control-Allow-Origin
-              - Access-Control-Allow-Credentials
           authorizer: auth
