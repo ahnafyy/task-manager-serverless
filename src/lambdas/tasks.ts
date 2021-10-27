@@ -42,7 +42,8 @@ export const createTask = async (event: any) => {
       category,
       description,
       important,
-      date: Date.now()
+      date: Date.now(),
+      comments: []
     }
 
     await db

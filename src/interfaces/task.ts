@@ -1,3 +1,4 @@
+import Comment from './comment'
 export default interface Task {
   id: string
   title: string
@@ -5,4 +6,5 @@ export default interface Task {
   description: string
   important: boolean
   date: number
+  comments: Array<Comment>
 }

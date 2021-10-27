@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"username\": \"test\",\n\t\"password\": \"test\"\n}",
+					"raw": "{\n\t\"username\": \"qwe\",\n\t\"password\": \"qwe\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -131,6 +131,16 @@
 		{
 			"name": "Create Task",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "4b28f046-ae9f-4af3-ab77-c1241a334f9f",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -174,6 +184,50 @@
 						{
 							"key": "id",
 							"value": "123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Comment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjMWNmMTc2LThjMTQtNDc2Yi04MTMzLTIyMjkxM2EwY2RiNiIsImlhdCI6MTYzNTMwMzYzMiwiZXhwIjoxNjM1MzA3MjMyfQ.ZVNgvoWYgGF-G0vIKZQEnVPLjJA31Q8ip7h3LNm6IHw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"user\": \"test\",\n\t\"text\": \"kasjf;kajsd;kfjaskdjf;asdkfj;kalasdjfasja\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{taskManagerURL}}/api/comments/:taskId",
+					"host": [
+						"{{taskManagerURL}}"
+					],
+					"path": [
+						"api",
+						"comments",
+						":taskId"
+					],
+					"variable": [
+						{
+							"key": "taskId",
+							"value": "970ebbf5-fd75-4bf5-b06a-1fe78a38309d"
 						}
 					]
 				}

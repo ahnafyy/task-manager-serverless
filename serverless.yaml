@@ -122,3 +122,16 @@ functions:
               - Authorization
               - Access-Control-Allow-Origin
           authorizer: auth
+  createComment:
+    handler: dist/lambdas/comments.createComment
+    events:
+      - http:
+          path: /api/comments/{taskId}
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - Authorization
+              - Access-Control-Allow-Origin
+          authorizer: auth
