@@ -19,8 +19,7 @@ export const createComment = async (event: any) => {
     const { user, text } = JSON.parse(body)
 
     if (!user || !text) {
-      console.log('Invalid request')
-      return response(400)
+      return response(400, { msg: 'Invalid request body' })
     }
 
     const comment: Comment = {
@@ -51,8 +50,7 @@ export const createComment = async (event: any) => {
       Attributes: { comments }
     } = data
     return response(200, { comments })
-  } catch (err) {
-    console.log('An error has occured error=%s', err)
-    return response(500)
+  } catch (e) {
+    return response(500, { msg: e.message })
   }
 }

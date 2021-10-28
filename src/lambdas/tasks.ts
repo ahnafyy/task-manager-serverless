@@ -17,9 +17,8 @@ export const getTasks = async () => {
       })
       .promise()
     return response(200, Items)
-  } catch (err) {
-    console.log('An error has occured error=%s', err)
-    return response(500)
+  } catch (e) {
+    return response(500, { msg: e.message })
   }
 }
 
@@ -32,8 +31,7 @@ export const createTask = async (event: any) => {
     const { title, category, description, important } = JSON.parse(body)
 
     if (!title || !category || !description) {
-      console.log('Invalid request')
-      return response(400)
+      return response(400, { msg: 'Invalid request body' })
     }
 
     const task: Task = {
@@ -53,9 +51,8 @@ export const createTask = async (event: any) => {
       })
       .promise()
     return response(200, task)
-  } catch (err) {
-    console.log('An error has occured error=%s', err)
-    return response(500)
+  } catch (e) {
+    return response(500, { msg: e.message })
   }
 }
 
@@ -75,8 +72,7 @@ export const deleteTask = async (event: any) => {
       })
       .promise()
     return response(200)
-  } catch (err) {
-    console.log('An error has occured error=%s', err)
-    return response(500)
+  } catch (e) {
+    return response(500, { msg: e.message })
   }
 }

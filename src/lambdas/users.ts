@@ -20,9 +20,8 @@ export const getUsers = async () => {
       })
       .promise()
     return response(200, Items)
-  } catch (err) {
-    console.log('An error has occured error=%s', err)
-    return response(500)
+  } catch (e) {
+    return response(500, { msg: e.message })
   }
 }
 
@@ -35,8 +34,7 @@ export const createUser = async (event: any) => {
     const { username, password, firstName, lastName, email } = JSON.parse(body)
 
     if (!username || !password || !firstName || !lastName || !email) {
-      console.log('Invalid request')
-      return response(400)
+      return response(400, { msg: 'Invalid request body' })
     }
 
     // Check for unique username
@@ -51,7 +49,6 @@ export const createUser = async (event: any) => {
       })
       .promise()
     if (foundUsernames && foundUsernames.length > 0) {
-      console.log('Username already exists')
       return response(400, { message: 'Username already exists' })
     }
 
@@ -67,7 +64,6 @@ export const createUser = async (event: any) => {
       })
       .promise()
     if (foundEmails && foundEmails.length > 0) {
-      console.log('Email already exists')
       return response(400, { message: 'Email already exists' })
     }
 
@@ -99,9 +95,8 @@ export const createUser = async (event: any) => {
       token,
       user
     })
-  } catch (err) {
-    console.log('An error has occured error=%s', err)
-    return response(500)
+  } catch (e) {
+    return response(500, { msg: e.message })
   }
 }
 
@@ -121,8 +116,7 @@ export const deleteUser = async (event: any) => {
       })
       .promise()
     return response(200)
-  } catch (err) {
-    console.log('An error has occured error=%s', err)
-    return response(500)
+  } catch (e) {
+    return response(500, { msg: e.message })
   }
 }

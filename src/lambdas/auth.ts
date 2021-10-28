@@ -16,8 +16,7 @@ export const login = async (event: any) => {
   const { username, password }: Login = JSON.parse(body)
 
   if (!username || !password) {
-    console.log('Invalid request')
-    return response(400)
+    return response(400, { msg: 'Invalid request body' })
   }
 
   try {
@@ -33,16 +32,14 @@ export const login = async (event: any) => {
       .promise()
 
     if (!Items || Items.length === 0) {
-      console.log('No users matched for username=%s', username)
-      return response(400)
+      return response(401, { msg: 'Invalid login' })
     }
 
     const storedUser = Items[0]
 
     const isMatch = await bcrypt.compare(password, storedUser.password)
     if (!isMatch) {
-      console.log('Password does not match')
-      return response(401)
+      return response(401, { msg: 'Invalid login' })
     }
 
     const token = jwt.sign({ id: storedUser.id }, secret, {
@@ -53,17 +50,15 @@ export const login = async (event: any) => {
       token,
       user: storedUser
     })
-  } catch (err) {
-    console.log('An error has occured error=%s', err)
-    return response(500)
+  } catch (e) {
+    return response(500, { msg: e.error })
   }
 }
 
 export const authenticate = async (event: any) => {
   const { authorizationToken } = event
   if (!authorizationToken) {
-    console.log('Invalid token')
-    return response(401)
+    return response(401, { msg: 'Missing token' })
   }
 
   // Remove 'Bearer '
@@ -71,8 +66,7 @@ export const authenticate = async (event: any) => {
   try {
     const decoded = jwt.verify(token, secret)
     return generatePolicy(token.sub, 'Allow', event.methodArn)
-  } catch (err) {
-    console.log('An error has occured error=%s', err)
-    return response(500)
+  } catch (e) {
+    return response(500, { msg: e.message })
   }
 }
