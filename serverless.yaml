@@ -30,6 +30,18 @@ provider:
         - 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.settings.USERS_TABLE}'
         - 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.settings.TASKS_TABLE}'
 
+resources:
+  Resources:
+    GatewayResponseDefault4XX:
+      Type: 'AWS::ApiGateway::GatewayResponse'
+      Properties:
+        ResponseParameters:
+          gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+          gatewayresponse.header.Access-Control-Allow-Headers: "'*'"
+        ResponseType: DEFAULT_4XX
+        RestApiId:
+          Ref: 'ApiGatewayRestApi'
+
 functions:
   auth:
     handler: dist/lambdas/auth.authenticate
@@ -39,24 +51,14 @@ functions:
       - http:
           path: /api/auth/login
           method: post
-          cors:
-            origin: '*'
-            headers:
-              - Content-Type
-              - Authorization
-              - Access-Control-Allow-Origin
+          cors: true
   getUsers:
     handler: dist/lambdas/users.getUsers
     events:
       - http:
           path: /api/users
           method: get
-          cors:
-            origin: '*'
-            headers:
-              - Content-Type
-              - Authorization
-              - Access-Control-Allow-Origin
+          cors: true
           authorizer: auth
   createUser:
     handler: dist/lambdas/users.createUser
@@ -64,24 +66,14 @@ functions:
       - http:
           path: /api/users
           method: post
-          cors:
-            origin: '*'
-            headers:
-              - Content-Type
-              - Authorization
-              - Access-Control-Allow-Origin
+          cors: true
   deleteUser:
     handler: dist/lambdas/users.deleteUser
     events:
       - http:
           path: /api/users/{id}
           method: delete
-          cors:
-            origin: '*'
-            headers:
-              - Content-Type
-              - Authorization
-              - Access-Control-Allow-Origin
+          cors: true
           authorizer: auth
   getTasks:
     handler: dist/lambdas/tasks.getTasks
@@ -89,12 +81,7 @@ functions:
       - http:
           path: /api/tasks
           method: get
-          cors:
-            origin: '*'
-            headers:
-              - Content-Type
-              - Authorization
-              - Access-Control-Allow-Origin
+          cors: true
           authorizer: auth
   createTask:
     handler: dist/lambdas/tasks.createTask
@@ -102,12 +89,7 @@ functions:
       - http:
           path: /api/tasks
           method: post
-          cors:
-            origin: '*'
-            headers:
-              - Content-Type
-              - Authorization
-              - Access-Control-Allow-Origin
+          cors: true
           authorizer: auth
   deleteTask:
     handler: dist/lambdas/tasks.deleteTask
@@ -115,12 +97,7 @@ functions:
       - http:
           path: /api/tasks/{id}
           method: delete
-          cors:
-            origin: '*'
-            headers:
-              - Content-Type
-              - Authorization
-              - Access-Control-Allow-Origin
+          cors: true
           authorizer: auth
   createComment:
     handler: dist/lambdas/comments.createComment
@@ -128,10 +105,5 @@ functions:
       - http:
           path: /api/comments/{taskId}
           method: post
-          cors:
-            origin: '*'
-            headers:
-              - Content-Type
-              - Authorization
-              - Access-Control-Allow-Origin
+          cors: true
           authorizer: auth
