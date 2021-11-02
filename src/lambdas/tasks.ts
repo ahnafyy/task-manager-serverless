@@ -28,9 +28,10 @@ export const getTasks = async () => {
 export const createTask = async (event: any) => {
   try {
     const { body } = event
-    const { title, category, description, important } = JSON.parse(body)
+    const { title, category, description, important, status, due, priority } =
+      JSON.parse(body)
 
-    if (!title || !category || !description) {
+    if (!title || !category || !description || !status || !due || !priority) {
       return response(400, { msg: 'Invalid request body' })
     }
 
@@ -40,8 +41,11 @@ export const createTask = async (event: any) => {
       category,
       description,
       important,
-      date: Date.now(),
-      comments: []
+      createdOn: Date.now(),
+      comments: [],
+      status,
+      due: new Date(due).getTime(),
+      priority
     }
 
     await db
