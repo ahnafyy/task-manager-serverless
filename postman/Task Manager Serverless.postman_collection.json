@@ -136,7 +136,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "4b28f046-ae9f-4af3-ab77-c1241a334f9f",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBjMWNmMTc2LThjMTQtNDc2Yi04MTMzLTIyMjkxM2EwY2RiNiIsImlhdCI6MTYzNTgxMTYwMywiZXhwIjoxNjM1ODE1MjAzfQ.cwYH-p-urP6kxEzR67M6vaaWVsw9A3_Aguchvq-_xDQ",
 							"type": "string"
 						}
 					]
@@ -145,7 +145,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"title\": \"test\",\n\t\"category\": \"test\",\n\t\"description\": \"test\",\n\t\"important\": true\n}",
+					"raw": "{\n\t\"title\": \"test\",\n\t\"category\": \"test\",\n\t\"description\": \"test\",\n\t\"important\": true,\n    \"status\": \"PENDING\",\n    \"due\": \"2019-09-01\",\n    \"priority\": \"LOW\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -153,13 +153,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{taskManagerURL}}/api/users",
+					"raw": "{{taskManagerURL}}/api/tasks",
 					"host": [
 						"{{taskManagerURL}}"
 					],
 					"path": [
 						"api",
-						"users"
+						"tasks"
 					]
 				}
 			},
@@ -234,6 +234,5 @@
 			},
 			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
