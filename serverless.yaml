@@ -11,7 +11,7 @@ package:
 
 plugins:
   - serverless-offline
-  - serverless-plugin-typescript
+
 provider:
   name: aws
   runtime: nodejs12.x
@@ -39,16 +39,16 @@ resources:
 
 functions:
   auth:
-    handler: dist/auth.bundle.authenticate
+    handler: dist/auth.authenticate
   login:
-    handler: dist/auth.bundle.login
+    handler: dist/auth.login
     events:
       - http:
           path: /api/auth/login
           method: post
           cors: true
   getUsers:
-    handler: dist/users.bundle.getUsers
+    handler: dist/users.getUsers
     events:
       - http:
           path: /api/users
@@ -56,14 +56,14 @@ functions:
           cors: true
           authorizer: auth
   createUser:
-    handler: dist/users.bundle.createUser
+    handler: dist/users.createUser
     events:
       - http:
           path: /api/users
           method: post
           cors: true
   deleteUser:
-    handler: dist/users.bundle.deleteUser
+    handler: dist/users.deleteUser
     events:
       - http:
           path: /api/users/{id}
@@ -71,7 +71,7 @@ functions:
           cors: true
           authorizer: auth
   getTasks:
-    handler: dist/tasks.bundle.getTasks
+    handler: dist/tasks.getTasks
     events:
       - http:
           path: /api/tasks
@@ -79,7 +79,7 @@ functions:
           cors: true
           authorizer: auth
   createTask:
-    handler: dist/tasks.bundle.createTask
+    handler: dist/tasks.createTask
     events:
       - http:
           path: /api/tasks
@@ -87,7 +87,7 @@ functions:
           cors: true
           authorizer: auth
   deleteTask:
-    handler: dist/tasks.bundle.deleteTask
+    handler: dist/tasks.deleteTask
     events:
       - http:
           path: /api/tasks/{id}
@@ -95,7 +95,7 @@ functions:
           cors: true
           authorizer: auth
   createComment:
-    handler: dist/comments.bundle.createComment
+    handler: dist/comments.createComment
     events:
       - http:
           path: /api/comments/{taskId}
