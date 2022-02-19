@@ -39,16 +39,16 @@ resources:
 
 functions:
   auth:
-    handler: dist/lambdas/auth.authenticate
+    handler: dist/auth.bundle.authenticate
   login:
-    handler: dist/lambdas/auth.login
+    handler: dist/auth.bundle.login
     events:
       - http:
           path: /api/auth/login
           method: post
           cors: true
   getUsers:
-    handler: dist/lambdas/users.getUsers
+    handler: dist/users.bundle.getUsers
     events:
       - http:
           path: /api/users
@@ -56,14 +56,14 @@ functions:
           cors: true
           authorizer: auth
   createUser:
-    handler: dist/lambdas/users.createUser
+    handler: dist/users.bundle.createUser
     events:
       - http:
           path: /api/users
           method: post
           cors: true
   deleteUser:
-    handler: dist/lambdas/users.deleteUser
+    handler: dist/users.bundle.deleteUser
     events:
       - http:
           path: /api/users/{id}
@@ -71,7 +71,7 @@ functions:
           cors: true
           authorizer: auth
   getTasks:
-    handler: dist/lambdas/tasks.getTasks
+    handler: dist/tasks.bundle.getTasks
     events:
       - http:
           path: /api/tasks
@@ -79,7 +79,7 @@ functions:
           cors: true
           authorizer: auth
   createTask:
-    handler: dist/lambdas/tasks.createTask
+    handler: dist/tasks.bundle.createTask
     events:
       - http:
           path: /api/tasks
@@ -87,7 +87,7 @@ functions:
           cors: true
           authorizer: auth
   deleteTask:
-    handler: dist/lambdas/tasks.deleteTask
+    handler: dist/tasks.bundle.deleteTask
     events:
       - http:
           path: /api/tasks/{id}
@@ -95,7 +95,7 @@ functions:
           cors: true
           authorizer: auth
   createComment:
-    handler: dist/lambdas/comments.createComment
+    handler: dist/comments.bundle.createComment
     events:
       - http:
           path: /api/comments/{taskId}
