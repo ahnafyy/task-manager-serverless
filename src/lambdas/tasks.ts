@@ -1,5 +1,5 @@
 import Task from '../interfaces/task'
-import { response } from '../utils'
+import { response } from '../utils/index'
 import { DynamoDB } from 'aws-sdk'
 import { v4 as uuid } from 'uuid'
 

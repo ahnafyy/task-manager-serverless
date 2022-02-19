@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import Login from '../interfaces/login'
-import { response, generatePolicy } from '../utils'
+import { response, generatePolicy } from '../utils/index'
 import { secret } from '../config/index'
 import { DynamoDB } from 'aws-sdk'
 
