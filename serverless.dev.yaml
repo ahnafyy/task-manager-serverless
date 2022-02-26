@@ -1,0 +1,2 @@
+env: dev
+secretKey: my-temporary-secret-which-will-be-put-in-secrets-manager

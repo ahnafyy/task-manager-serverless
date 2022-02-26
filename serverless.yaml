@@ -1,9 +1,9 @@
-service: task-manager
+service: task-manager-${opt:stage, self:provider.stage}
 
 custom:
   settings:
-    USERS_TABLE: task-manager-users
-    TASKS_TABLE: task-manager-tasks
+    USERS_TABLE: task-manager-users-${opt:stage, self:provider.stage}
+    TASKS_TABLE: task-manager-tasks-${opt:stage, self:provider.stage}
 
 package:
   individually: true
@@ -17,7 +17,7 @@ provider:
   runtime: nodejs12.x
   region: us-east-2
   environment:
-    SECRET_KEY: ${file(serverless.{opt:stage, 'dev'}.yaml):secretKey}
+    SECRET_KEY: ${file(serverless.${opt:stage, self:provider.stage}.yaml):secretKey}
   iamRoleStatements:
     - Effect: 'Allow'
       Action:

@@ -1,0 +1,51 @@
+Resources:
+  UsersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ${self:custom.settings.USERS_TABLE}
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: username
+          AttributeType: S
+        - AttributeName: password
+          AttributeType: S
+        - AttributeName: firstName
+          AttributeType: S
+        - AttributeName: lastName
+          AttributeType: S
+        - AttributeName: email
+          AttributeType: S
+        - AttributeName: admin
+          AttributeType: B
+        - AttributeName: createdOn
+          AttributeType: number
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+  TasksTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ${self:custom.settings.TASKS_TABLE}
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: title
+          AttributeType: S
+        - AttributeName: category
+          AttributeType: S
+        - AttributeName: description
+          AttributeType: S
+        - AttributeName: important
+          AttributeType: B
+        - AttributeName: createdOn
+          AttributeType: N
+        - AttributeName: status
+          AttributeType: S
+        - AttributeName: due
+          AttributeType: N
+        - AttributeName: priority
+          AttributeType: S
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
