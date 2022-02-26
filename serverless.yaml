@@ -16,7 +16,8 @@ provider:
   name: aws
   runtime: nodejs12.x
   region: us-east-2
-  environment: ${self:custom.settings}
+  environment:
+    SECRET_KEY: ${file(serverless.{opt:stage, 'dev'}.yaml):secretKey}
   iamRoleStatements:
     - Effect: 'Allow'
       Action:
@@ -24,18 +25,6 @@ provider:
       Resource:
         - 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.settings.USERS_TABLE}'
         - 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.settings.TASKS_TABLE}'
-
-resources:
-  Resources:
-    GatewayResponseDefault4XX:
-      Type: 'AWS::ApiGateway::GatewayResponse'
-      Properties:
-        ResponseParameters:
-          gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
-          gatewayresponse.header.Access-Control-Allow-Headers: "'*'"
-        ResponseType: DEFAULT_4XX
-        RestApiId:
-          Ref: 'ApiGatewayRestApi'
 
 functions:
   auth:
@@ -102,3 +91,7 @@ functions:
           method: post
           cors: true
           authorizer: auth
+
+resources:
+  - ${file(templates/dynamo.yml)}
+  - ${file(templates/api-gateway.yml)}

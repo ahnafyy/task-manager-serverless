@@ -2,7 +2,6 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import Login from '../interfaces/login'
 import { response, generatePolicy } from '../utils/index'
-import { secret } from '../config/index'
 import { DynamoDB } from 'aws-sdk'
 
 const db = new DynamoDB.DocumentClient()
@@ -42,7 +41,7 @@ export const login = async (event: any) => {
       return response(401, { msg: 'Invalid login' })
     }
 
-    const token = jwt.sign({ id: storedUser.id }, secret, {
+    const token = jwt.sign({ id: storedUser.id }, process.env.SECRET_KEY, {
       expiresIn: 3600
     })
 
@@ -64,7 +63,7 @@ export const authenticate = async (event: any) => {
   // Remove 'Bearer '
   const token = authorizationToken.substring(7, authorizationToken.length)
   try {
-    const decoded = jwt.verify(token, secret)
+    const decoded = jwt.verify(token, process.env.SECRET_KEY)
     return generatePolicy(token.sub, 'Allow', event.methodArn)
   } catch (e) {
     return response(500, { msg: e.message })

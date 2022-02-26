@@ -1,7 +1,6 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import User from '../interfaces/user'
-import { secret } from '../config/index'
 import { response } from '../utils/index'
 import { DynamoDB } from 'aws-sdk'
 import { v4 as uuid } from 'uuid'
@@ -81,7 +80,7 @@ export const createUser = async (event: any) => {
       createdOn: Date.now()
     }
 
-    const token = await jwt.sign({ id: user.id }, secret, {
+    const token = await jwt.sign({ id: user.id }, process.env.SECRET_KEY, {
       expiresIn: 3600
     })
 
