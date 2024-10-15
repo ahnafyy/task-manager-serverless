@@ -14,7 +14,7 @@ This is a modern React single page application that utilizes AWS Serverless func
 
 ### Create User
 
-`POST /api/users``
+`POST /api/users`
 
 ### Delete User
 
